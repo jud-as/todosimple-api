@@ -69,14 +69,15 @@ public class Task {
         if (!(obj instanceof Task)) return false;
 
         Task other = (Task) obj;
-        if (this.id == null)
-            if (other.id != null)
+        if (this.id == null) {
+            if (other.id != null) {
                 return false;
-            else if (!this.id.equals(other.id))
-                return false;
+            }
+        } else if (!this.id.equals(other.id)) {
+            return false;
+        }
 
-        return     Objects.equals(this.id, other.id)
-                && Objects.equals(this.description, other.description)
+        return     Objects.equals(this.description, other.description)
                 && Objects.equals(this.user, other.user);
     }
 

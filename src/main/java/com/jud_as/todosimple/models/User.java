@@ -81,14 +81,14 @@ public class User {
         if (!(obj instanceof User)) return false;
 
         User other = (User) obj;
-        if (this.id == null)
-            if (other.id != null)
+        if (this.id == null) {
+            if (other.id != null) {
                 return false;
-            else if (!this.id.equals(other.id))
-                return false;
+            }
+        } else if (!this.id.equals(other.id))
+            return false;
 
-        return     Objects.equals(this.id, other.id)
-                && Objects.equals(this.username, other.username)
+        return     Objects.equals(this.username, other.username)
                 && Objects.equals(this.password, other.password);
     }
 
