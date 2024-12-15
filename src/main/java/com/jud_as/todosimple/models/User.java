@@ -37,13 +37,14 @@ public class User {
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 100)
     private String password;
 
-    // private List<Task> tasks = new ArrayList<Task>();
+    @OneToMany(mappedBy = "user")
+    private List<Task> tasks = new ArrayList<Task>();
 
     public User() {
 
     } // Empty constructor for Spring Boot
 
-    public User(String username, String password) {
+    public User(Long id, String username, String password) {
         this.username = username;
         this.password = password;
 
