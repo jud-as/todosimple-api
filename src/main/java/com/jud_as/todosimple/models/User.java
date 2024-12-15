@@ -14,14 +14,15 @@ import java.util.Objects;
 @Entity
 @Table(name = User.TABLE_NAME)
 public class User {
+
     public interface CreateUser {}
     public interface UpdateUser {}
 
     public static final String TABLE_NAME = "user";
 
     @Id // Primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
     @Column(name = "id", unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
     private Long id;
 
     @Column(name = "username", length = 100, nullable = false, unique = true)
@@ -30,14 +31,15 @@ public class User {
     @Size(groups = CreateUser.class, min = 4, max = 100)
     private String username;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Hide password in JSON response
     @Column(name = "password", length = 100, nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Hide password in JSON response
     @NotNull(groups = {CreateUser.class, UpdateUser.class})
     @NotEmpty(groups = {CreateUser.class, UpdateUser.class})
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 100)
     private String password;
 
     @OneToMany(mappedBy = "user")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Hide tasks in JSON response
     private List<Task> tasks = new ArrayList<Task>();
 
     public User() {
@@ -72,6 +74,14 @@ public class User {
 
     public void setPassword(@NotNull(groups = {CreateUser.class, UpdateUser.class}) @NotEmpty(groups = {CreateUser.class, UpdateUser.class}) @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 100) String password) {
         this.password = password;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override
