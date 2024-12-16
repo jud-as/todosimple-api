@@ -2,12 +2,13 @@ package com.jud_as.todosimple.services;
 
 import com.jud_as.todosimple.models.Task;
 import com.jud_as.todosimple.models.User;
+import com.jud_as.todosimple.models.projection.TaskProjection;
 import com.jud_as.todosimple.repositories.TaskRepository;
-import com.jud_as.todosimple.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,11 +27,16 @@ public class TaskService {
         );
     }
 
+    public List<TaskProjection> findAllByUserId(Long userId) {
+        List<TaskProjection> tasks = this.taskRepository.findByUser_Id(userId);
+        return tasks;
+    }
+
     @Transactional
-    public Task update(Task obj) {
+    public void update(Task obj) {
         Task newObj = findById(obj.getId());
         newObj.setDescription(obj.getDescription());
-        return this.taskRepository.save(newObj);
+        this.taskRepository.save(newObj);
     }
 
     @Transactional
