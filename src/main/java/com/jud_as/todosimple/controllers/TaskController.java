@@ -4,6 +4,7 @@ package com.jud_as.todosimple.controllers;
 import com.jud_as.todosimple.models.Task;
 import com.jud_as.todosimple.models.projection.TaskProjection;
 import com.jud_as.todosimple.services.TaskService;
+import com.jud_as.todosimple.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class TaskController {
 
     @Autowired // Dependency injection
     private TaskService taskService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable Long id) {
@@ -52,6 +56,7 @@ public class TaskController {
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<TaskProjection>> findAllByUserId(@PathVariable Long userId) {
+        userService.findById(userId);
         List<TaskProjection> tasks = this.taskService.findAllByUserId(userId);
         return ResponseEntity.ok().body(tasks);
     }
