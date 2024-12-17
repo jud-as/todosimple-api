@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -6,14 +6,13 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
-=======
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
 ### Eclipse ###
->>>>>>> 1fc9755 (Resolving pull conflicts)
 .apt_generated
 .classpath
 .factorypath
@@ -21,18 +20,16 @@ out/
 .settings
 .springBeans
 .sts4-cache
-<<<<<<< HEAD
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-=======
+
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
->>>>>>> 1fc9755 (Resolving pull conflicts)
 
 ### NetBeans ###
 /nbproject/private/
@@ -40,18 +37,15 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
-<<<<<<< HEAD
+
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
-=======
 
-### VS Code ###
-.vscode/
 
 ### Mac OS ###
 .DS_Store
->>>>>>> 1fc9755 (Resolving pull conflicts)
+
