@@ -33,19 +33,19 @@ public class TaskService {
     }
 
     @Transactional
-    public void update(Task obj) {
-        Task newObj = findById(obj.getId());
-        newObj.setDescription(obj.getDescription());
-        this.taskRepository.save(newObj);
+    public void update(Task taskObj) {
+        Task newTaskObj = findById(taskObj.getId());
+        newTaskObj.setDescription(taskObj.getDescription());
+        this.taskRepository.save(newTaskObj);
     }
 
     @Transactional
-    public Task create(Task obj) {
-        User user = this.userService.findById(obj.getUser().getId());
-        obj.setId(null);
-        obj.setUser(user);
-        obj = this.taskRepository.save(obj);
-        return obj;
+    public Task create(Task taskObj) {
+        User user = this.userService.findById(taskObj.getUser().getId());
+        taskObj.setId(null);
+        taskObj.setUser(user);
+        taskObj = this.taskRepository.save(taskObj);
+        return taskObj;
     }
 
     @Transactional

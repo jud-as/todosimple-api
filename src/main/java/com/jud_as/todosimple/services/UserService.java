@@ -26,18 +26,18 @@ public class UserService {
     }
 
     @Transactional
-    public User create(User obj) {
-        obj.setId(null);
-        obj = this.userRepository.save(obj);
-        this.taskRepository.saveAll(obj.getTasks());
-        return obj;
+    public User create(User userObj) {
+        userObj.setId(null);
+        userObj = this.userRepository.save(userObj);
+        this.taskRepository.saveAll(userObj.getTasks());
+        return userObj;
     }
 
     @Transactional
-    public User update(User obj) {
-        User newObj = findById(obj.getId());
-        newObj.setPassword(obj.getPassword());
-        return this.userRepository.save(newObj);
+    public User update(User userObj) {
+        User newUserObj = findById(userObj.getId());
+        newUserObj.setPassword(userObj.getPassword());
+        return this.userRepository.save(newUserObj);
     }
 
     @Transactional

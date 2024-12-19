@@ -1,5 +1,4 @@
 package com.jud_as.todosimple.controllers;
-
 import com.jud_as.todosimple.models.User;
 import com.jud_as.todosimple.services.UserService;
 import jakarta.validation.Valid;
