@@ -28,23 +28,23 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable Long id) {
-        Task obj = this.taskService.findById(id);
-        return ResponseEntity.ok().body(obj);
+        Task taskObj = this.taskService.findById(id);
+        return ResponseEntity.ok().body(taskObj);
     }
 
     @PostMapping
     @Validated
-    public ResponseEntity<Void> create(@Valid @RequestBody Task obj) {
-        this.taskService.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+    public ResponseEntity<Void> create(@Valid @RequestBody Task taskObj) {
+        this.taskService.create(taskObj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(taskObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
     @Validated
-    public ResponseEntity<Void> update(@Valid @RequestBody Task obj, @PathVariable Long id) {
-        obj.setId(id);
-        this.taskService.update(obj);
+    public ResponseEntity<Void> update(@Valid @RequestBody Task taskObj, @PathVariable Long id) {
+        taskObj.setId(id);
+        this.taskService.update(taskObj);
         return ResponseEntity.noContent().build();
     }
 

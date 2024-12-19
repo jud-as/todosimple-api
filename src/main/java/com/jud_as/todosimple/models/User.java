@@ -87,21 +87,20 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof User)) return false;
+    public boolean equals(Object userObj) {
+        if (userObj == this) return true;
+        if (userObj == null) return false;
+        if (!(userObj instanceof User otherUser)) return false;
 
-        User other = (User) obj;
         if (this.id == null) {
-            if (other.id != null) {
+            if (otherUser.id != null) {
                 return false;
             }
-        } else if (!this.id.equals(other.id))
+        } else if (!this.id.equals(otherUser.id))
             return false;
 
-        return     Objects.equals(this.username, other.username)
-                && Objects.equals(this.password, other.password);
+        return     Objects.equals(this.username, otherUser.username)
+                && Objects.equals(this.password, otherUser.password);
     }
 
     @Override

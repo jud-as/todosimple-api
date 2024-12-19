@@ -21,23 +21,23 @@ public class UserController {
     // localhost:8080/user/1
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
-        User obj = this.userService.findById(id);
-        return ResponseEntity.ok().body(obj);
+        User userObj = this.userService.findById(id);
+        return ResponseEntity.ok().body(userObj);
     }
 
     @PostMapping
     @Validated(User.CreateUser.class)
-    public ResponseEntity<Void> create(@Valid @RequestBody User obj) {
-        this.userService.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+    public ResponseEntity<Void> create(@Valid @RequestBody User userObj) {
+        this.userService.create(userObj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
     @Validated(User.UpdateUser.class)
-    public ResponseEntity<Void> update(@Valid @RequestBody User obj, @PathVariable Long id) {
-        obj.setId(id);
-        this.userService.update(obj);
+    public ResponseEntity<Void> update(@Valid @RequestBody User userObj, @PathVariable Long id) {
+        userObj.setId(id);
+        this.userService.update(userObj);
         return ResponseEntity.noContent().build();
     }
 

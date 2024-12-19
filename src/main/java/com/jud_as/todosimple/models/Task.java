@@ -63,22 +63,21 @@ public class Task {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof Task)) return false;
+    public boolean equals(Object taskObj) {
+        if (taskObj == this) return true;
+        if (taskObj == null) return false;
+        if (!(taskObj instanceof Task otherTask)) return false;
 
-        Task other = (Task) obj;
         if (this.id == null) {
-            if (other.id != null) {
+            if (otherTask.id != null) {
                 return false;
             }
-        } else if (!this.id.equals(other.id)) {
+        } else if (!this.id.equals(otherTask.id)) {
             return false;
         }
 
-        return     Objects.equals(this.description, other.description)
-                && Objects.equals(this.user, other.user);
+        return     Objects.equals(this.description, otherTask.description)
+                && Objects.equals(this.user, otherTask.user);
     }
 
     @Override
